@@ -19,12 +19,11 @@ const selectContent = async (url) => {
         case '/contact': 
             prevContent = './contact-me.html';
             return fs.readFile('./contact-me.html', 'utf8');
-        case '/404': 
+        case '/favicon.ico': 
+            return fs.readFile(prevContent, 'utf8');
+        default:
             prevContent = './404.html';
             return fs.readFile('./404.html', 'utf8');
-        default:
-            // for /favicon.ico request
-            return fs.readFile(prevContent, 'utf8');
     }
 };
 
