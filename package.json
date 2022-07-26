@@ -1,0 +1,27 @@
+{
+  "name": "informational-site",
+  "version": "1.0.0",
+  "description": "Served on node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeromecho/informational-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeromecho/informational-site/issues"
+  },
+  "homepage": "https://github.com/jeromecho/informational-site#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0"
+  }
+}

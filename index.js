@@ -1,38 +1,26 @@
-const http = require('http');
-const fs = require('fs/promises');
-const { URL } = require('node:url');
+#!/usr/bin/env node
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 8000;
 
-http.createServer(async function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(await selectContent(req.url));
-}).listen(8080);
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './index.html'));
+});
 
-const selectContent = async (url) => {
-    let prevContent = './index.html';
-    switch (url) {
-        case '/': 
-            prevContent = './index.html';
-            return fs.readFile('./index.html', 'utf8');
-        case '/about': 
-            prevContent = './about.html';
-            return fs.readFile('./about.html', 'utf8');
-        case '/contact': 
-            prevContent = './contact-me.html';
-            return fs.readFile('./contact-me.html', 'utf8');
-        case '/favicon.ico': 
-            return fs.readFile(prevContent, 'utf8');
-        default:
-            prevContent = './404.html';
-            return fs.readFile('./404.html', 'utf8');
-    }
-};
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, './about.html'));
+});
 
-const readFile = async (path, encoding) => {
-    const result = fs.readFile(path, encoding, (err, data) => {
-        if (err) {
-            console.error('Error in reading file');
-            return;
-        }
-        return data;
-    });
-}
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, './contact-me.html'));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './404.html'));
+});
+
+app.listen(port, () => {
+    console.log(`Listening to port: ${port}`);
+});
+
